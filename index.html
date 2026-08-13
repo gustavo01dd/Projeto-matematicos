@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercado Mágico | Mercado Mágico da Matemática</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+<div class="nav">
+  <div class="logo">🍎 MERCADO MÁGICO<span>MERCADO MÁGICO DA MATEMÁTICA</span></div>
+  <nav>
+    <a href="#inicio">🏠 Início</a>
+    <a href="#produtos">🛒 Produtos</a>
+    <a href="#cesta">🧺 Minha Cesta</a>
+    <a href="#aprender">🧮 Aprenda</a>
+    <a href="#desafio">✨ Desafio</a>
+    <a href="#sobre">ℹ️ Projeto</a>
+  </nav>
+  <button class="cartBtn" onclick="irParaCesta()">🧺 Cesta <span id="headerCount">0</span></button>
+</div>
+</header>
+<div class="magicRibbon">✦ Escola de Magia <span>•</span> Beco Diagonal <span>•</span> Mercado Mágico <span>•</span> Feitiços e Matemática ✦</div>
+<div class="floating-magic" aria-hidden="true">
+  <span>✦</span><span>✧</span><span>·</span><span>✦</span><span>✧</span><span>·</span><span>✦</span><span>✧</span>
+</div>
+<div class="scorebar">
+  <div><span class="score-label">🏆 PONTUAÇÃO</span> <strong id="score">0</strong></div>
+  <div class="progress-wrap"><span id="progressFill"></span></div>
+  <div><span class="score-label">✨ MISSÕES</span> <strong id="missions">0/3</strong></div>
+</div>
+
+<main>
+<section id="inicio" class="hero">
+  <div>
+    <span class="badge">✦ ESCOLA DE MAGIA • BECO DIAGONAL • MERCADO MÁGICO</span>
+    <div class="hero-kicker">UMA EXPERIÊNCIA INTERATIVA DE MATEMÁTICA</div>
+    <h1>Seu carrinho.<br><span>Sua magia.</span><br>Seu desafio.</h1>
+    <p>Entre no mercado encantado, escolha seus produtos, monte sua cesta e transforme <b>adição, subtração, multiplicação e divisão</b> em uma aventura. Cada compra revela uma nova pista.</p>
+    <div class="hero-actions">
+      <button class="primary" onclick="document.getElementById('produtos').scrollIntoView()">🛒 COMEÇAR A MISSÃO</button>
+      <button class="ghost-btn" onclick="document.getElementById('desafio').scrollIntoView()">✨ VER DESAFIO</button>
+    </div>
+  </div>
+  <div class="heroCard">
+    <div class="seal">✦</div>
+    <div class="card-label">MISSÃO Nº 001</div>
+    <h2>🪄 Sua missão</h2>
+    <p>Atravesse o portal para o Mercadinho do Beco Diagonal, escolha seus produtos e complete uma compra. Depois, observe como cada operação matemática aparece no processo.</p>
+    <br><p><b>✨ Dica de mestre:</b> compre várias unidades para ativar a multiplicação e depois divida a conta para completar outra operação.</p><div class="mission-mini"><span>⚡</span><b>Objetivo:</b> comprar, calcular e acertar.</div>
+  </div>
+</section>
+
+<section id="produtos">
+<div class="title">
+<span class="badge">MERCADINHO DO BECO DIAGONAL</span>
+<h2>🛒 Produtos</h2>
+<p>Escolha a quantidade, compre seus itens e acumule pontos para completar a missão.</p><div class="section-rule"><i></i><span>✦</span><i></i></div>
+</div>
+<div class="categories" id="categories"></div>
+<div class="products" id="products"></div>
+</section>
+
+<section id="cesta">
+<div class="title"><span class="badge">SUA COMPRA</span><h2>🧺 Minha Cesta</h2><p>Aqui aparecem as contas da sua compra.</p></div>
+<div class="cartSection">
+<div class="cartGrid">
+  <div class="cartList" id="cartList"></div>
+  <div class="receipt">
+    <h3>🧾 Resumo da compra</h3>
+    <div class="row"><span>Subtotal</span><b id="subtotal">R$ 0,00</b></div>
+    <div class="row"><span>Desconto</span><b id="discount">R$ 0,00</b></div>
+    <div class="row total"><span>Total</span><span id="total">R$ 0,00</span></div>
+    <div class="mathBox">
+      <h4>✖️ Multiplicação + ➕ Adição</h4>
+      <div id="mathLines">Adicione produtos para ver as contas.</div>
+    </div>
+  </div>
+</div>
+
+<div style="padding:20px">
+<h3 style="color:var(--verde);margin-bottom:10px">🏷️ Desconto educativo</h3>
+<p>Para demonstrar a subtração, compras a partir de R$ 50 recebem <b>10% de desconto</b>.</p>
+<div class="mathBox" id="discountMath">O cálculo aparecerá aqui quando sua cesta atingir R$ 50,00.</div>
+
+<h3 style="color:var(--verde);margin:22px 0 10px">💰 Pagamento e troco</h3>
+<div class="payGrid">
+  <div><label>Quanto o cliente pagou?</label><input id="paid" type="number" min="0" step="0.01" placeholder="Ex.: 100"></div>
+  <div style="display:flex;align-items:end"><button class="calcButton" onclick="calcularTroco()">CALCULAR TROCO</button></div>
+</div>
+<div class="result" id="changeResult">Digite um valor para calcular o troco.</div>
+
+<h3 style="color:var(--verde);margin:22px 0 10px">👥 Dividir a conta</h3>
+<div class="payGrid">
+  <div><label>Número de pessoas</label><input id="people" type="number" min="1" step="1" placeholder="Ex.: 2"></div>
+  <div style="display:flex;align-items:end"><button class="calcButton" onclick="dividirConta()">DIVIDIR CONTA</button></div>
+</div>
+<div class="result" id="divisionResult">Informe o número de pessoas para dividir o total.</div>
+</div>
+</div>
+</section>
+
+<section id="aprender">
+<div class="title"><span class="badge">APRENDA</span><h2>🧮 A matemática está em todo lugar!</h2><p>Veja onde cada operação aparece durante uma compra.</p></div>
+<div class="lessonGrid">
+  <div class="lesson"><div class="icon">➕</div><h3>Adição</h3><p>Usamos para juntar os valores dos produtos e descobrir o subtotal da compra.</p></div>
+  <div class="lesson"><div class="icon">➖</div><h3>Subtração</h3><p>Usamos para retirar o desconto do subtotal e também para descobrir o troco.</p></div>
+  <div class="lesson"><div class="icon">✖️</div><h3>Multiplicação</h3><p>Usamos quando compramos várias unidades: preço de uma unidade × quantidade.</p></div>
+  <div class="lesson"><div class="icon">➗</div><h3>Divisão</h3><p>Usamos para repartir o valor total igualmente entre duas ou mais pessoas.</p></div>
+</div>
+</section>
+
+<section id="desafio">
+<div class="challenge">
+<h2>✨ Desafio da Compra</h2>
+<p>Teste seus conhecimentos antes de continuar.</p>
+<div class="question"><b>🧙 Você comprou 3 produtos de R$ 5,00 cada. Quanto irá pagar?</b></div>
+<div class="options">
+<button onclick="responderDesafio(false)">A) R$ 8,00</button>
+<button onclick="responderDesafio(true)">B) R$ 15,00</button>
+<button onclick="responderDesafio(false)">C) R$ 20,00</button>
+<button onclick="responderDesafio(false)">D) R$ 10,00</button>
+</div>
+<div class="feedback" id="feedback"></div><div class="challenge-score">+5 pontos por resposta correta • complete as 3 missões para desbloquear o título <b>🧙 Mestre da Matemática</b></div>
+</div>
+</section>
+
+<section id="sobre">
+<div class="about">
+<div class="title"><span class="badge">PROJETO ESCOLAR</span><h2>📚 Sobre o projeto</h2></div>
+<p>O <b>Mercado Mágico — Mercado Mágico da Matemática</b> foi desenvolvido para demonstrar como as operações matemáticas básicas estão presentes em situações do cotidiano.</p><br>
+<p>Através de uma compra virtual, o projeto trabalha <b>adição, subtração, multiplicação e divisão</b> de maneira prática e interativa.</p><br>
+<p>O visual foi inspirado no universo clássico das escolas de magia, com castelo noturno, pergaminhos, estrelas, poções e objetos encantados, enquanto o foco permanece no mercado e na aprendizagem.</p>
+</div>
+</section>
+</main>
+
+<footer><b>MERCADO MÁGICO • MERCADO MÁGICO DA MATEMÁTICA</b><br>Projeto escolar — Matemática aplicada ao cotidiano</footer>
+<div id="toast"></div>
+<div id="achievement" class="achievement" aria-hidden="true">
+  <div class="achievement-card">
+    <div class="achievement-stars">✦ ✧ ✦</div>
+    <div class="achievement-icon">🏆</div>
+    <div class="achievement-small">CONQUISTA DESBLOQUEADA</div>
+    <h2 id="achievementTitle">Mestre da Matemática</h2>
+    <p id="achievementText">Você completou uma missão!</p>
+    <button onclick="fecharConquista()">CONTINUAR AVENTURA</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
