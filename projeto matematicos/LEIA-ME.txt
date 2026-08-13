@@ -1,0 +1,18 @@
+WORLD FRUIT — MERCADO MÁGICO DA MATEMÁTICA
+
+1. Abra index.html no navegador.
+2. Vá em Produtos.
+3. Escolha a quantidade e clique em COMPRAR.
+4. Em Minha Cesta, o site mostra:
+   - multiplicação (preço x quantidade);
+   - adição (soma dos produtos);
+   - desconto de 10% a partir de R$ 50;
+   - subtração do desconto;
+   - pagamento e troco;
+   - divisão da conta entre pessoas.
+5. O Desafio Matemático pode ser usado na apresentação.
+6. Para colocar imagens reais, salve os arquivos na pasta "imagens" usando os nomes definidos no código:
+   pocao.jpg, pocao-cura.jpg, feijoes.jpg, feijoes-surpresa.jpg,
+   sapo-chocolate.jpg, doces.jpg, pergaminho.jpg,
+   pergaminho-personalizado.jpg, galeao.jpg, kit-galeoes.jpg,
+   vassoura.jpg, vassoura-mini.jpg, varinha.jpg, varinha-especial.jpg.
