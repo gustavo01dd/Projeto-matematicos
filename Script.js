@@ -1,19 +1,17 @@
 // ===== 1. Dados dos produtos, cesta, pontuacao e logica principal da loja =====
 const produtos=[
-{id:1,nome:"Poção Mágica",preco:12.50,cat:"poções",emoji:"🧪",img:"imagens/pocao.jpg"},
-{id:2,nome:"Poção de Cura",preco:15.00,cat:"poções",emoji:"🧪",img:"imagens/pocao-cura.jpg"},
-{id:3,nome:"Feijõezinhos Mágicos",preco:8.50,cat:"feijõezinhos",emoji:"🫘",img:"imagens/feijoes.jpg"},
-{id:4,nome:"Feijõezinhos Surpresa",preco:10.00,cat:"feijõezinhos",emoji:"🫘",img:"imagens/feijoes-surpresa.jpg"},
-{id:5,nome:"Sapo de Chocolate",preco:9.50,cat:"doces",emoji:"🍬",img:"imagens/sapo-chocolate.jpg"},
-{id:6,nome:"Doces Mágicos",preco:7.00,cat:"doces",emoji:"🍬",img:"imagens/doces.jpg"},
-{id:7,nome:"Pergaminho Encantado",preco:6.00,cat:"pergaminhos",emoji:"📜",img:"imagens/pergaminho.jpg"},
-{id:8,nome:"Pergaminho Personalizado",preco:9.00,cat:"pergaminhos",emoji:"📜",img:"imagens/pergaminho-personalizado.jpg"},
-{id:9,nome:"Galeão de Ouro",preco:20.00,cat:"galeões",emoji:"🪙",img:"imagens/galeao.jpg"},
-{id:10,nome:"Kit de Galeões",preco:35.00,cat:"galeões",emoji:"🪙",img:"imagens/kit-galeoes.jpg"},
-{id:11,nome:"Mini Vassoura",preco:18.00,cat:"vassouras",emoji:"🧹",img:"imagens/vassoura.jpg"},
-{id:12,nome:"Vassoura Voadora Mini",preco:25.00,cat:"vassouras",emoji:"🧹",img:"imagens/vassoura-mini.jpg"},
-{id:13,nome:"Varinha Mágica",preco:22.00,cat:"varinhas",emoji:"🪄",img:"imagens/varinha.jpg"},
-{id:14,nome:"Varinha Especial",preco:30.00,cat:"varinhas",emoji:"🪄",img:"imagens/varinha-especial.jpg"}
+{id:1,nome:"Poção Mágica",preco:12.50,cat:"poções",emoji:"",img:"imagens/pocao.jfif"},
+{id:2,nome:"Poção de Cura",preco:15.00,cat:"poções",emoji:"",img:"imagens/pocao-cura.jfif"},
+{id:3,nome:"Feijõezinhos Mágicos",preco:8.50,cat:"feijõezinhos",emoji:"",img:"imagens/feijoes.jfif"},
+{id:4,nome:"Feijõezinhos Surpresa",preco:10.00,cat:"feijõezinhos",emoji:"",img:"imagens/feijoes-surpresa.jfif"},
+{id:5,nome:"Sapo de Chocolate",preco:9.50,cat:"doces",emoji:"",img:"imagens/sapo-chocolate.jfif"},
+{id:6,nome:"Doces Mágicos",preco:7.00,cat:"doces",emoji:"",img:"imagens/doces.jfif"},
+{id:7,nome:"Pergaminho Encantado",preco:6.00,cat:"pergaminhos",emoji:"",img:"imagens/pergaminho.jfif"},
+{id:8,nome:"Pergaminho Personalizado",preco:9.00,cat:"pergaminhos",emoji:"",img:"imagens/pergaminho-personalizado.jfif"},
+{id:11,nome:"Mini Vassoura",preco:18.00,cat:"vassouras",emoji:"",img:"imagens/vassoura.jfif"},
+{id:12,nome:"Vassoura Voadora ",preco:25.00,cat:"vassouras",emoji:"",img:"imagens/vassoura-voadora.jfif"},
+{id:13,nome:"Varinha Mágica",preco:22.00,cat:"varinhas",emoji:"",img:"imagens/varinha.jfif"},
+{id:14,nome:"Varinha Especial",preco:30.00,cat:"varinhas",emoji:"",img:"imagens/varinha-especial.jfif"}
 ];
 let cesta=[];
 let score=0;
@@ -46,7 +44,7 @@ function fecharConquista(){document.getElementById("achievement").classList.remo
 
 function moeda(v){return v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});}
 function categorias(){
- const cats=[["todos","🛒 Todos"],["poções","🧪 Poções"],["feijõezinhos","🫘 Feijõezinhos"],["doces","🍬 Doces"],["pergaminhos","📜 Pergaminhos"],["galeões","🪙 Galeões"],["vassouras","🧹 Vassouras"],["varinhas","🪄 Varinhas"]];
+ const cats=[["todos","🛒 Todos"],["poções","🧪 Poções"],["feijõezinhos","🫘 Feijõezinhos"],["doces","🍬 Doces"],["pergaminhos","📜 Pergaminhos"],["vassouras","🧹 Vassouras"],["varinhas","🪄 Varinhas"]];
  document.getElementById("categories").innerHTML=cats.map((c,i)=>`<button class="${i===0?"active":""}" onclick="filtrar('${c[0]}',this)">${c[1]}</button>`).join("");
 }
 function renderProdutos(cat="todos"){
@@ -80,10 +78,9 @@ function mudarQtd(id,d){
 }
 function atualizar(){
  const subtotal=cesta.reduce((s,p)=>s+p.preco*p.qtd,0);
- const desconto=subtotal>=50?subtotal*.10:0,total=subtotal-desconto;
+ const total=subtotal;
  document.getElementById("headerCount").textContent=cesta.reduce((s,p)=>s+p.qtd,0);
  document.getElementById("subtotal").textContent=moeda(subtotal);
- document.getElementById("discount").textContent=moeda(desconto);
  document.getElementById("total").textContent=moeda(total);
  document.getElementById("cartList").innerHTML=cesta.length?cesta.map(p=>`
  <div class="cartLine">
@@ -93,7 +90,6 @@ function atualizar(){
   <button class="remove" onclick="remover(${p.id})">✕</button>
  </div>`).join(""):"<p style='padding:20px;text-align:center'>Sua cesta está vazia. Vá aos produtos e clique em <b>COMPRAR</b>.</p>";
  document.getElementById("mathLines").innerHTML=cesta.length?cesta.map(p=>`${moeda(p.preco)} × ${p.qtd} = <b>${moeda(p.preco*p.qtd)}</b>`).join("<br>")+"<hr style='margin:10px 0;border:0;border-top:1px solid #dfd2b8'>"+cesta.map(p=>moeda(p.preco*p.qtd)).join(" + ")+" = <b>"+moeda(subtotal)+"</b>":"Adicione produtos para ver as contas.";
- document.getElementById("discountMath").innerHTML=desconto?`10% de ${moeda(subtotal)} = ${moeda(desconto)}<br><b>${moeda(subtotal)} − ${moeda(desconto)} = ${moeda(total)}</b>`:`O desconto de 10% aparece quando o subtotal atingir R$ 50,00.`;
 }
 function remover(id){cesta=cesta.filter(x=>x.id!==id);atualizar();}
 function calcularTroco(){
@@ -110,7 +106,7 @@ function dividirConta(){
  if(!pessoas||pessoas<1)return document.getElementById("divisionResult").innerHTML="Informe pelo menos 1 pessoa.";
  document.getElementById("divisionResult").innerHTML=`<b>${moeda(total)} ÷ ${pessoas} = ${moeda(total/pessoas)}</b><br>👥 Cada pessoa paga aproximadamente <b>${moeda(total/pessoas)}</b>.`;
 }
-function valorTotal(){const s=cesta.reduce((a,p)=>a+p.preco*p.qtd,0);return s-(s>=50?s*.1:0);}
+function valorTotal(){return cesta.reduce((a,p)=>a+p.preco*p.qtd,0);}
 function irParaCesta(){document.getElementById("cesta").scrollIntoView();}
 function responderDesafio(ok){document.getElementById("feedback").innerHTML=ok?"✨ ACERTOU! 5 × 3 = R$ 15,00.":"🪄 Quase! Pense em 5 + 5 + 5 ou 5 × 3."; if(ok) completeMission("challenge","Mestre da Matemática","Você completou as 3 missões e desbloqueou o título de Mestre da Matemática!");}
 function toast(t){const x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),1800);}

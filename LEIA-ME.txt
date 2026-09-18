@@ -6,7 +6,6 @@ WORLD FRUIT — MERCADO MÁGICO DA MATEMÁTICA
 4. Em Minha Cesta, o site mostra:
    - multiplicação (preço x quantidade);
    - adição (soma dos produtos);
-   - desconto de 10% a partir de R$ 50;
    - subtração do desconto;
    - pagamento e troco;
    - divisão da conta entre pessoas.
